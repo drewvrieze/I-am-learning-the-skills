@@ -1,7 +1,7 @@
 Taking notes
 create - insert
 r
-u
+update - update
 delete - delete
 create table simple (a int, b int)
 create table students (id int, first text, last text, phone text, major text);
@@ -26,4 +26,13 @@ select first,last,courses.major,num,grade from students join registrations on st
 insert into registrations (students_id, courses_crn, grade) values (2,253, "C");
 insert into registrations (students_id, courses_crn, grade) values (1,253, "A");
 
-
+update students set first = 'Bob', last = 'smith', phone ="", major = 'art' where uid=2;
+alter table students rename column uid to id;
+select * from courses;
+alter table courses add column uid serial;
+select * from courses;
+delete from courses where uid = 3
+python -m venv .drivers
+ls - lists files, .drivers is hidden because . in the name
+ls -la shows all the folders
+source .drivers/bin/activate
