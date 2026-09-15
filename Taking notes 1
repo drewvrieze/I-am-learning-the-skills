@@ -1,0 +1,69 @@
+Taking notes
+create - insert
+r
+u
+delete - delete
+create table simple (a int, b int)
+create table students (id int, first text, last text, phone text, major text);
+select * from students;
+insert into students (id,first,last,phone,major) values (1,'Karl',"Castleton",'719-719-7191',"CS")
+select * from students;
+insert into students (id,first,last,phone,major) values (2,'Bob',"Smith",'719-728-6282',"Art")
+insert into students (id) values (3);
+insert into students (id,first) values ('bob',10)
+delete from students; (DONT DO)
+delete from students where id=3;
+create table courses (crn int, major text, num int);
+insert into courses (crn,major,num) values (251,"CSCI",260);
+insert into courses (crn,major,num) values (253,"MATH",151);
+select * from courses:
+create table registrations (students_id int, courses_crn int, grade text);
+select * from students
+select * from courses
+insert into registrations (students_id, courses_crn, grade) values (1,251, "A");
+select * from students join registrations on students.id=students_id;
+select first,last,courses.major,num,grade from students join registrations on students.id=students_id join in courses of courses.crn=courses_crn;
+insert into registrations (students_id, courses_crn, grade) values (2,253, "C");
+insert into registrations (students_id, courses_crn, grade) values (1,253, "A");
+
+
+def addStudent():
+    id = input("Enter the new student id: ")
+    first = input("First Name: ")
+    last = input("Last Name: ")
+    major = input("Major: ")
+    phone = input("Phone: ")
+    query = f"""insert into students (id,first,last,phone,major) values ({id},'{first}','{last}','{phone}')"""
+    print(query)
+
+    pass
+
+def deleteStudent():
+    pass
+
+def showStudent():
+    print("Enter the id information for the student")
+    id = input("Id: ")
+    query = f""" select * from students whiere id={id}""" 
+    print(query)
+    pass
+
+def updateStudent():
+    pass
+
+choice="1"
+while (choice!='0'):
+    print("0) Add a student")
+    print("1) Delete a student")
+    print("2) Show a student")
+    print("3) Update a student")
+    print("0) Quit")
+    choice = input("Type the number for your choice: ")
+    if (choice == '0'):
+        addStudent()
+    if (choice == '1'):
+        deleteStudent()
+    if (choice == '2'):
+        showStudent()
+    if (choice == '3'):
+        updateStudent()
