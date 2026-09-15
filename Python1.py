@@ -20,7 +20,14 @@ def showStudent():
     pass
 
 def updateStudent():
-    pass
+    id = input("Enter the student ID: ")
+    first = input("First Name: ")
+    last = input("Last Name: ")
+    major = input("Major: ")
+    phone = input("Phone: ")
+    query = f"""update students set first='{first}', last = '{last}', phone = '{phone}', major = '{major}' where id = {id};"""
+    
+    print(query)
 
 choice="1"
 while (choice!='0'):
