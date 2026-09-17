@@ -1,11 +1,22 @@
+import psycopg2
+
+try:
+    conn = psycopg2.connect(dbname ='',user='',host='',password='')
+except:
+    print("I am unable to connect to the database")
+
+
+
+
+
 def addStudent():
-    id = input("Enter the new student id: ")
     first = input("First Name: ")
     last = input("Last Name: ")
     major = input("Major: ")
     phone = input("Phone: ")
-    query = f"""insert into students (id,first,last,phone,major) values ({id},'{first}','{last}','{phone}')"""
-    print(query)
+    query = f"""insert into students (id,first,last,phone,major) values ('{first}','{last}','{phone}')"""
+    #print(query)
+    curs.execute(query)
 
     pass
 
@@ -45,3 +56,8 @@ while (choice!='0'):
         showStudent()
     if (choice == '3'):
         updateStudent()
+
+
+
+
+    
