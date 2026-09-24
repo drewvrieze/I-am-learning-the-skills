@@ -1,6 +1,6 @@
 Taking notes
 create - insert
-r
+retrieve - select
 update - update
 delete - delete
 create table simple (a int, b int)
