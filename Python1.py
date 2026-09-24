@@ -1,7 +1,8 @@
 import psycopg2
 
 try:
-    conn = psycopg2.connect(dbname ='',user='',host='',password='')
+    conn = psycopg2.connect(dbname ='mydatabase',user='dwvrieze',host='localhost',password='password')
+    curs = conn.cursor()
 except:
     print("I am unable to connect to the database")
 
@@ -17,18 +18,32 @@ def addStudent():
     query = f"""insert into students (id,first,last,phone,major) values ('{first}','{last}','{phone}')"""
     #print(query)
     curs.execute(query)
-
+    conn.commit()
     pass
 
 def deleteStudent():
+    # Assignment for student to write this code
     pass
 
 def showStudent():
     print("Enter the id information for the student")
     id = input("Id: ")
-    query = f""" select * from students whiere id={id}""" 
-    print(query)
-    pass
+    query = f""" select first, last, phone, major from students where id={id}""" 
+    curs.execute(query)
+    rows = curs.fetchall()
+    print(rows)
+    print(f"First: {rows[0][0]} Last: {rows[0][1]}")
+    print(f"Phone: {rows[0][2]} Major: {rows[0][3]}")
+
+def showStudents():
+    query = f""" select id, first, last, phone, major from students""" 
+    curs.execute(query)
+    rows = curs.fetchall()
+    print(rows)
+    for row in rows:
+        print(f"ID: {row[0]}")
+        print(f"First: {rows[1]} Last: {rows[2]}")
+        print(f"Phone: {rows[3]} Major: {rows[4]}")
 
 def updateStudent():
     id = input("Enter the student ID: ")
@@ -37,25 +52,29 @@ def updateStudent():
     major = input("Major: ")
     phone = input("Phone: ")
     query = f"""update students set first='{first}', last = '{last}', phone = '{phone}', major = '{major}' where id = {id};"""
-    
+    curs.execute(query)
+    conn.commit()
     print(query)
 
 choice="1"
 while (choice!='0'):
-    print("0) Add a student")
-    print("1) Delete a student")
-    print("2) Show a student")
-    print("3) Update a student")
+    print("1) Add a student")
+    print("2) Delete a student")
+    print("3) Show a student")
+    print("4) Update a student")
+    print("5) Show all Students")
     print("0) Quit")
     choice = input("Type the number for your choice: ")
-    if (choice == '0'):
-        addStudent()
     if (choice == '1'):
-        deleteStudent()
+        addStudent()
     if (choice == '2'):
-        showStudent()
+        deleteStudent()
     if (choice == '3'):
+        showStudent()
+    if (choice == '4'):
         updateStudent()
+    if (choice == '5'):
+        showStudents()
 
 
 
