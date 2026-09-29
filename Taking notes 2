@@ -1,0 +1,9 @@
+source .drivers/bin/activate
+export DBPASSWORD = password
+echo $DBPASSWORD -> password
+source .drivers/bin/activate
+export DBNAME=mydatabase
+export DBUSER=dwvrieze
+export DBHOST=localhost
+Using Glade?
+Import his published notes on a new python file
