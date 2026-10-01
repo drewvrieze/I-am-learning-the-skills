@@ -1,12 +1,16 @@
 import psycopg2
+import os
+
+
 
 try:
-    conn = psycopg2.connect(dbname ='mydatabase',user='dwvrieze',host='localhost',password='password')
+    conn = psycopg2.connect(dbname =os.environ['DBNAME'],user=os.environ['DBUSER'],host=os.environ['DBHOST'],password=os.environ['DBPASSWORD'])
     curs = conn.cursor()
 except:
     print("I am unable to connect to the database")
 
 
+# Figure out how to do venv.drivers
 
 
 
