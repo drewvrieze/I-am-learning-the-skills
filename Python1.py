@@ -19,20 +19,23 @@ def addStudent():
     last = input("Last Name: ")
     major = input("Major: ")
     phone = input("Phone: ")
-    query = f"""insert into students (id,first,last,phone,major) values ('{first}','{last}','{phone}')"""
+    query = f"""insert into students (id,first,last,phone,major) values ('{first}','{last}','{phone}');"""
     #print(query)
     curs.execute(query)
     conn.commit()
     pass
 
 def deleteStudent():
-    # Assignment for student to write this code
-    pass
-
-def showStudent():
     print("Enter the id information for the student")
     id = input("Id: ")
-    query = f""" select first, last, phone, major from students where id={id}""" 
+    query = f""" delete from students where id = {id};"""
+    curs.execute(query)
+    conn.commit()
+
+def showStudent():
+    print("Enter the id of the student")
+    id = input("Id: ")
+    query = f""" select first, last, phone, major from students where id={id};""" 
     curs.execute(query)
     rows = curs.fetchall()
     print(rows)
@@ -40,7 +43,7 @@ def showStudent():
     print(f"Phone: {rows[0][2]} Major: {rows[0][3]}")
 
 def showStudents():
-    query = f""" select id, first, last, phone, major from students""" 
+    query = f""" select id, first, last, phone, major from students;""" 
     curs.execute(query)
     rows = curs.fetchall()
     print(rows)
